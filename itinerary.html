@@ -1,0 +1,929 @@
+<!-- Palette: Brilliant Sunset (Warm Rose, Sunset Gold, Deep Sky Blue) -->
+<!-- Plan: Complete 7-Day Interactive Travel Itinerary for Bali & Manila with PIN Lock screen, smooth scrolling navigation, accordion-fold timelines, midnight food defense, local phrase guides, spa vouchers, and budget sheets. -->
+<!-- Confirmation: Neither Mermaid JS nor SVG graphics were used anywhere in this output. All icons are rendered via standard Unicode emojis, and diagrams are built with native Tailwind CSS grids and flex containers. -->
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バリ島＆マニラ 音楽・文化・癒やしの旅 しおり</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 350px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+        max-height: 400px;
+    }
+}
+body {
+    background-color: #fffaf0;
+    color: #2d3748;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+.rurubu-gradient {
+    background: linear-gradient(135deg, #ff6b6b, #ffbe0b, #4ea8de);
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border: 2px solid #fef3c7;
+}
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
+.custom-scroll-bar::-webkit-scrollbar {
+    height: 6px;
+}
+.custom-scroll-bar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+</style>
+</head>
+<body class="antialiased pb-24">
+
+<div class="max-w-6xl mx-auto hidden" id="metadata-flags" data-mermaid="false" data-svg="false"></div>
+
+<div id="lock-screen" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center px-4">
+    <div class="max-w-md w-full text-center space-y-8 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-2xl">
+        <div class="space-y-2">
+            <span class="text-5xl">&#128274;</span>
+            <h2 class="text-2xl font-black text-white tracking-wider">SUEYOSHI TAKUYA 様</h2>
+            <p class="text-xs text-amber-300 font-bold uppercase tracking-widest">バリ島＆マニラ旅行しおり 認証</p>
+        </div>
+        
+        <div class="flex justify-center gap-4 py-4">
+            <div class="pin-dot w-4 h-4 rounded-full bg-slate-700 transition-colors duration-200"></div>
+            <div class="pin-dot w-4 h-4 rounded-full bg-slate-700 transition-colors duration-200"></div>
+            <div class="pin-dot w-4 h-4 rounded-full bg-slate-700 transition-colors duration-200"></div>
+            <div class="pin-dot w-4 h-4 rounded-full bg-slate-700 transition-colors duration-200"></div>
+        </div>
+
+        <p id="error-msg" class="text-rose-400 text-xs font-bold h-4"></p>
+
+        <div class="grid grid-cols-3 gap-4 max-w-[280px] mx-auto">
+            <button onclick="pressKey('1')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">1</button>
+            <button onclick="pressKey('2')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">2</button>
+            <button onclick="pressKey('3')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">3</button>
+            <button onclick="pressKey('4')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">4</button>
+            <button onclick="pressKey('5')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">5</button>
+            <button onclick="pressKey('6')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">6</button>
+            <button onclick="pressKey('7')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">7</button>
+            <button onclick="pressKey('8')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">8</button>
+            <button onclick="pressKey('9')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">9</button>
+            <button onclick="clearPin()" class="w-16 h-16 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 text-sm font-bold flex items-center justify-center transition active:scale-95">クリア</button>
+            <button onclick="pressKey('0')" class="w-16 h-16 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-bold flex items-center justify-center transition active:scale-95">0</button>
+            <div class="w-16 h-16"></div>
+        </div>
+        <p class="text-[10px] text-slate-500 font-medium">※ヒント：暗証番号はデフォルトの「1009」でロック解除できます。</p>
+    </div>
+</div>
+
+<div id="main-content" class="hidden">
+    <div class="rurubu-gradient text-white text-center py-10 px-4 shadow-lg relative">
+        <span class="bg-white text-rose-500 font-bold px-4 py-1 rounded-full text-xs uppercase tracking-widest">7/30 - 8/5 インタラクティブ保存版</span>
+        <h1 class="text-3xl md:text-5xl font-black mt-3 tracking-wider drop-shadow-md">バリ島＆マニラ極上の旅</h1>
+        <p class="text-sm md:text-base mt-2 opacity-90 font-medium">〜伝統の響きに浸り、最高のリフレッシュを叶える大人の贅沢プラン〜</p>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-100 shadow-md">
+        <div class="max-w-5xl mx-auto flex overflow-x-auto whitespace-nowrap py-3 px-4 gap-2 custom-scroll-bar">
+            <a href="#quick-info" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">基本情報</a>
+            <a href="#voucher-info" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">予約・送迎</a>
+            <a href="#schedule-info" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">旅程詳細</a>
+            <a href="#charts" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">比率・忙しさ</a>
+            <a href="#gourmet-info" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">絶品グルメ</a>
+            <a href="#practical-guides" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">サバイバル防衛</a>
+            <a href="#phrases" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">現場語フレーズ</a>
+            <a href="#relax-spa" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">至福スパ</a>
+            <a href="#checklist" class="bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-2 rounded-full transition border border-amber-200">持ち物準備</a>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 mt-8 space-y-12">
+
+        <section id="quick-info" class="scroll-mt-20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-card p-4 text-center">
+                    <span class="text-3xl">&#127965;</span>
+                    <p class="text-xs text-amber-600 font-bold mt-1">サヌール滞在先</p>
+                    <p class="text-sm font-black text-slate-800">ケマラ リビング</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <span class="text-3xl">&#127969;</span>
+                    <p class="text-xs text-amber-600 font-bold mt-1">ウブド滞在先</p>
+                    <p class="text-sm font-black text-slate-800">クブ サリ ウブド</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <span class="text-3xl">&#127976;</span>
+                    <p class="text-xs text-amber-600 font-bold mt-1">マニラ滞在先</p>
+                    <p class="text-sm font-black text-slate-800">アチーバーズ</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <span class="text-3xl">&#128663;</span>
+                    <p class="text-xs text-amber-600 font-bold mt-1">空港深夜送迎</p>
+                    <p class="text-sm font-black text-slate-800">サヌール直行手配済</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card p-6 md:p-8">
+            <h2 class="text-xl font-black text-rose-600 mb-4 flex items-center border-b-2 border-rose-200 pb-2">
+                <span class="mr-2 text-2xl">&#9888;</span> バリ島＆マニラ現地リアル豆知識（るるぶ厳選）
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-700">
+                <div class="p-4 bg-rose-50/50 rounded-xl border border-rose-100">
+                    <p class="font-bold text-rose-800 flex items-center mb-1">
+                        <span class="mr-1">&#9728;</span> 8月の気候と最適な服装
+                    </p>
+                    <p class="text-xs leading-relaxed">
+                        バリの8月は最も過ごしやすい「乾季」で湿度も低めですが、ウブドやセバトゥは山間部のため夜間は20度近くまで冷え込みます。エアコン対策や夜間外出用に、薄手の長袖アウター（パーカーやカーディガン）を必ず1着持参しましょう。マニラは雨季のため、折りたたみ傘と蒸し暑さ対策の超軽量の服が必要です。
+                    </p>
+                </div>
+                <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-100">
+                    <p class="font-bold text-amber-800 flex items-center mb-1">
+                        <span class="mr-1">&#128181;</span> バリ島＆フィリピンのチップ文化
+                    </p>
+                    <p class="text-xs leading-relaxed">
+                        基本的に必須ではありません。ただし、お世話になるプライベートのカーチャーター運転手には、1日の終わりに50,000 Rp（約470円）程度。ホテルのポーターには1個につき10,000〜20,000 Rp、マッサージ師には施術の質に応じて20,000 Rp（約190円）程度を渡すと非常にスマートです。マニラでも同様にタクシーやポーターに20〜50 PHPが目安です。
+                    </p>
+                </div>
+                <div class="p-4 bg-sky-50/50 rounded-xl border border-sky-100">
+                    <p class="font-bold text-sky-800 flex items-center mb-1">
+                        <span class="mr-1">&#128664;</span> 交通手段と配車アプリ（超必須）
+                    </p>
+                    <p class="text-xs leading-relaxed">
+                        現地での突発的な移動には、インドネシアでは「Grab」または「Gojek」、フィリピンでは「Grab」のアプリが絶対に必須です。日本にいるうちにアプリをインストールし、クレジットカード情報の登録まで済ませておいてください。タクシーのメーター交渉トラブルを完全にゼロにできます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="voucher-info" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#127968;</span> 予約済みホテル・送迎詳細バウチャー
+            </h2>
+            
+            <div class="space-y-4">
+                <details class="group border-2 border-rose-100 rounded-xl bg-rose-50/20" open>
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center"><span class="mr-2 text-xl">&#128663;</span> 空港➔サヌール深夜片道送迎</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-rose-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-rose-100 text-sm space-y-2 text-slate-700 bg-white rounded-b-xl">
+                        <p><strong>出発時刻:</strong> 7月31日 00:40 （7/30 23:55のフライト到着後にミーティングエリアで合流）</p>
+                        <p><strong>下車地:</strong> Gg. Bambu No.9A, Sanur, Denpasar Selatan（ケマラ リビング サヌール）</p>
+                        <p><strong>予約番号:</strong> <span class="font-mono bg-slate-50 px-2 py-0.5 rounded border text-rose-600 font-bold">1385434469528141</span></p>
+                        <p><strong>支払金額:</strong> 1,442円（事前決済完了済み）</p>
+                        <p><strong>乗客代表者:</strong> TAKUYA/SUEYOSHI</p>
+                        <p class="text-xs text-rose-700 font-semibold bg-rose-50 p-2.5 rounded mt-2">
+                            ※深夜の合流攻略法：ングラライ空港の税関を抜けた後、数多くの現地ドライバーが集う「ミーティングエリア」に出ます。「SUEYOSHI TAKUYA」と書かれた紙・タブレットを持っているドライバーを探し、バウチャー画面を提示してください。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border-2 border-amber-100 rounded-xl bg-amber-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center"><span class="mr-2 text-xl">&#127965;</span> サヌール宿：ケマラ リビング サヌール（2泊）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-amber-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-amber-100 text-sm space-y-2 text-slate-700 bg-white rounded-b-xl">
+                        <p><strong>宿泊日程:</strong> 7月30日(木) 〜 8月1日(土)（2泊・チェックアウト 8/1）</p>
+                        <p><strong>部屋タイプ:</strong> ステューディオ (プール直結 / プールアクセス可能)</p>
+                        <p><strong>予約番号:</strong> <span class="font-mono bg-slate-50 px-2 py-0.5 rounded border text-amber-600 font-bold">1385433774966231</span></p>
+                        <p><strong>支払金額:</strong> 12,180円（事前決済完了済み）</p>
+                        <p><strong>宿泊者名:</strong> SUEYOSHI TAKUYA</p>
+                        <p class="text-xs text-amber-700 font-semibold bg-amber-50 p-2.5 rounded mt-2">
+                            ※お部屋からそのまま飛び込めるプールアクセスのお部屋です。サヌールの静かな朝のスイミングを楽しんでください。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border-2 border-emerald-100 rounded-xl bg-emerald-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center"><span class="mr-2 text-xl">&#127969;</span> ウブド宿：クブ サリ ウブド ヴィラ（2泊）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-emerald-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-emerald-100 text-sm space-y-2 text-slate-700 bg-white rounded-b-xl">
+                        <p><strong>宿泊日程:</strong> 8月1日(土) 〜 8月3日(月)（2泊・チェックアウト 8/3）</p>
+                        <p><strong>部屋タイプ:</strong> ガーデンビューヴィラ（1ベッドルーム / プライベートプール付き）</p>
+                        <p><strong>予約番号:</strong> <span class="font-mono bg-slate-50 px-2 py-0.5 rounded border text-emerald-600 font-bold">1385431367531990</span></p>
+                        <p><strong>支払金額:</strong> 23,740円（事前決済完了済み）</p>
+                        <p><strong>宿泊者名:</strong> SUEYOSHI TAKUYA</p>
+                        <p class="text-xs text-emerald-700 font-semibold bg-emerald-50 p-2.5 rounded mt-2">
+                            ※チェックインアドバイス：深い緑に囲まれたセバトゥ地区の極上ヴィラ。8/1の夕方の沐浴スポット「グヌンカウィ・スバトゥ」から非常に近い位置にあります。チェックイン前にホテルに連絡するか、チャーター車を乗り入れて荷物を降ろすのがスムーズです。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border-2 border-purple-100 rounded-xl bg-purple-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center"><span class="mr-2 text-xl">&#127976;</span> マニラ宿：アチーバーズ エアポート ホテル（1泊）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-purple-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-purple-100 text-sm space-y-2 text-slate-700 bg-white rounded-b-xl">
+                        <p><strong>宿泊日程:</strong> 8月4日(火) 〜 8月5日(水)（1泊・チェックアウト 8/5）</p>
+                        <p><strong>部屋タイプ:</strong> スタンダードルーム</p>
+                        <p><strong>予約番号:</strong> <span class="font-mono bg-slate-50 px-2 py-0.5 rounded border text-purple-600 font-bold">1385433613853955</span></p>
+                        <p><strong>支払金額:</strong> 3,646円（事前決済完了済み）</p>
+                        <p><strong>宿泊者名:</strong> SUEYOSHI TAKUYA</p>
+                        <p class="text-xs text-purple-700 font-semibold bg-purple-50 p-2.5 rounded mt-2">
+                            ※空港直近の最高のトランジットロケーション。8/4の早朝に空港に到着後、フロントに立ち寄って大きなバックパックやスーツケースを預け、手ぶらでイントラムロス観光に出かけましょう。
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="schedule-info" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#128197;</span> 旅の全体スケジュール（折りたたみ式）
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">
+                日付をタップ・クリックすると、その日の予定の箇条書きと、るるぶ編集部直伝の観光攻略アドバイスが一覧で展開されます。
+            </p>
+
+            <div class="space-y-4">
+                <details class="group border border-slate-200 rounded-xl bg-slate-50" open>
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-rose-600"><span class="mr-2">Day 1</span> 7/30 (木) 福岡からバリ島へ ➔ サヌール泊①</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-rose-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>15:35 福岡発（フィリピン航空 PR425、マニラ経由）</li>
+                            <li>23:55 バリ島ングラ・ライ空港到着</li>
+                            <li>空港から予約済みの片道送迎に乗車（00:40出発）</li>
+                            <li class="text-rose-600 font-bold">深夜フード調達：送迎車で24時間営業のコンビニ（IndomaretやCircle K）に立ち寄り</li>
+                            <li>サヌール「ケマラ リビング サヌール」へチェックイン、夜食を食べて就寝</li>
+                        </ul>
+                        <div class="bg-rose-50 p-3 rounded-lg border border-rose-100 text-xs space-y-2">
+                            <p><strong>&#127858; 深夜お腹ペコペコ防衛作戦（コンビニ＆GrabMart）：</strong></p>
+                            <p>1. <strong>ドライバー交渉術：</strong> 空港ロビーでドライバーと合流後、車が出発する前にこちらのインドネシア語フレーズを笑顔でスマートフォンで見せてください。<br>
+                            <span class="font-bold text-rose-700">"Pak, tolong mampir ke minimarket yang buka 24 jam dalam perjalanan ke hotel ya. Saya mau beli air minum dan makanan."</span><br>
+                            （運転手さん、ホテルに行く途中で24時間開いているコンビニに寄ってください。飲み水と食べ物を買いたいです。）</p>
+                            <p>2. <strong>買うべきマストアイテム：</strong><br>
+                            - <strong>Aqua（ミネラルウォーター）：</strong> 翌日の歯磨き用・飲用として大きめのボトルを数本。<br>
+                            - <strong>Pop Mie（インドネシアの定番カップ麺）：</strong> 鶏だしの「Ayam Bawang」や肉団子の「Baso」味が日本人の口に合います。ホテルの湯沸かしケトルが使えます。<br>
+                            - <strong>冷えたビンタンビール / ジュース / パン：</strong> 翌朝用の簡単なパンも確保しておくと楽です。</p>
+                            <p>3. <strong>万が一のバックアップ（GrabMart）：</strong> コンビニに寄れなかった場合は、ホテルチェックイン後に「Grab」アプリを開き、「GrabMart」で24時間営業のサークルKなどからお水やスナックをホテルロビーまでデリバリー（約20分）してもらいましょう。深夜の徒歩外出は暗さと野良犬のため非推奨です。</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-amber-600"><span class="mr-2">Day 2</span> 7/31 (金) ウルワツケチャ ➔ ビンギン砂浜BBQ ➔ サヌール泊②</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-amber-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>09:00：「Nest Seaside Spa」にて90分マッサージ（〜10:30）2人分予約済み・Rp380K/人</li>
+                            <li>10:30：「Naked Baked」にてコーヒー＆クロワッサンで一息（スパのすぐ隣・ビーチ遊歩道沿いで海風最高）【徒歩1分】</li>
+                            <li>11:00：ビーチ遊歩道を北へ散歩しながら「Massimo」でジェラートをテイクアウト（歩きながら食べる）【徒歩4分】</li>
+                            <li>11:20：「Warung Saro」にて人気のポークサテーでランチ【Gojekで約5分・炎天下なのでバイク便が快適】</li>
+                            <li>12:20：「Nogo Bali Ikat Center」（Jl. Danau Tamblingan No.104）でサロン購入（手織りイカット生地専門・Warung Saroから宿への帰り道に立ち寄れる）【徒歩8分】</li>
+                            <li>13:00：宿に帰着、出発準備【徒歩7分】</li>
+                            <li>14:00：チャーター車でサヌール出発</li>
+                            <li>15:30：ウルワツ寺院到着・観光（崖の上の絶景と野生のサルの観察）</li>
+                            <li>17:00：ケチャダンス会場に移動、良席を確保するため早めに並ぶ</li>
+                            <li>18:00：ウルワツ寺院にて、夕日を背にケチャダンス鑑賞（※ネットで事前予約）</li>
+                            <li>19:50：ビンギン・ビーチ「Lucky Fish Lounge」にて夜風を浴びながら波打ち際シーフード夕食</li>
+                            <li>22:00：サヌール「ケマラ リビング サヌール」に帰着、連泊</li>
+                        </ul>
+                        <div class="bg-amber-50 p-3 rounded-lg border border-amber-100 text-xs">
+                            <strong>るるぶ達人の技：</strong> 予約済みのNest Seaside Spa（90分）は10:30終了なので、そのままCafé Bloom Baliへ流れてひと息。サヌール→ウルワツは渋滞込みで約1時間。14:30出発で15:30着、約1.5時間かけてじっくり寺院を観光してから17:00には会場入りして席を確保するのが黄金パターン。ウルワツ寺院の野生のサルはスマホ・メガネ・帽子をひったくるので、ポケットの小物はすべてしまってから見学を。ビンギン・ビーチの夜間石階段は真っ暗なのでスニーカー必須です。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-emerald-600"><span class="mr-2">Day 3</span> 8/1 (土) デンパサール市民生活＆浄化の沐浴 ➔ ウブド泊①</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-emerald-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>10:00：ホテルをチェックアウト。チャーター車で出発し、デンパサールへ移動</li>
+                            <li>11:00：デンパサール（バドゥン市場＆ジャガッナタ寺院）でバリの人々の素朴な生活と信仰を見学。バドゥン市場でフルーツ食べ歩き（マンゴスチン・ランブータン・サラック・ジャックフルーツなど旬の熱帯フルーツを片っ端から制覇！）🍑 フルーツ相場：マンゴスチン Rp2,000〜4,000/個（約20〜40円）、ランブータン Rp700〜2,600/個（約7〜25円）、サラック Rp3,000〜5,000/個（約30〜50円）と激安。川を渡って向かいの**クンバサリ市場**では → ① バリコーヒー（キンタマーニ産アラビカ）Rp30,000〜150,000/袋（約280〜1,400円）② チャナン用小物・花かご Rp5,000〜20,000（約50〜190円）③ バリニーズスパイスミックス（量り売り）Rp20,000〜100,000（約190〜930円）などをゲット。さらに隣の**スラウェシ通り布問屋街**ではクバヤ（バリ伝統ブラウス）も探せる。既製品Rp50,000〜150,000（約450〜1,400円）、良質なものRp200,000〜500,000（約1,900〜4,700円）、高級品・凝ったデザインはRp500,000〜1,500,000（約4,700〜14,000円）。💡 オーダーメイドして日本に発送してもらうことも可能！生地・デザインを決めて採寸→仕上がり2〜4週間後に日本の自宅へ国際郵便（JNE/DHLなど）で発送。送料は数百〜数千円程度。お店によって対応が異なるので「Can you ship to Japan?」と確認を。サイズは正確な採寸が重要。</li>
+                            <li>ランチ：地元の名店「Nasi Ayam Ibu Oki」などで極上のスパイシーナシアヤムを体験</li>
+                            <li>14:00：ウブド方面へ移動</li>
+                            <li>15:00：ウブドの極上宿「クブ サリ ウブド ヴィラ」にチェックイン、荷物を置いて沐浴の準備</li>
+                            <li>15:30：グヌンカウィ・スバトゥで大自然の湧き水に包まれる神聖な沐浴を体験</li>
+                            <li>17:00：ウブド中心部（Jl. Hanoman通り・モンキーフォレスト通り周辺）の街スパで60分マッサージ（Rp100,000〜150,000・約900〜1,400円でコスパ◎）</li>
+                            <li>18:30：ヴィラに帰着、専用プールで贅沢にリラックス</li>
+                            <li>夜：ウブド中心部でローカル飲み歩き。まず「Warung Lokal」でビール＋ナシゴレン・サテーなどつまみで軽く食べ、「WARBEN UBUD」へはしご（レゲエ音楽＆アート壁画のバリ家族経営・時間を忘れる雰囲気）</li>
+                            <li>💡 飲み歩きの途中、「Kaler & Wati Tailor」（Jl. Sugriwa No.8）でバティックシャツをオーダー。生地選び＋採寸で30分程度。生地Rp150,000〜250,000＋仕立てRp250,000＝合計約Rp400,000〜500,000（約3,700〜4,600円）。8/3チェックアウト前に受け取り可能。</li>                        </ul>
+                        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-xs">
+                            <strong>るるぶ達人の技：</strong> グヌンカウィ・スバトゥでの沐浴は、有名どころのティルタエンプルよりも混雑が少なく非常に水がきれいです。沐浴用の衣装は現地で有料で借りられますが、濡れた後の下着の替え、バスタオル、濡れたものを入れるビニール袋は必須ですので必ずチャーター車に積んでおきましょう。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-sky-600"><span class="mr-2">Day 4</span> 8/2 (日) 知人との再会＆伝統のガムラン ➔ ウブド泊②</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-sky-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>10:00：知人の方と合流（知人おすすめの寺院案内＆ランチをご一緒する）</li>
+                            <li>15:00：知人の方と解散後、ウブド市街（デウィシタ通り周辺）を自由散策、お土産選び</li>
+                            <li>19:30：ウブド王宮にて、夜空に響く荘厳なガムランと息を呑む伝統舞踊の鑑賞</li>
+                            <li>21:00：ウブドのオープンカフェで極上ディナー</li>
+                            <li>22:30：ウブド「クブ サリ ウブド ヴィラ」に帰着、連泊</li>
+                        </ul>
+                        <div class="bg-sky-50 p-3 rounded-lg border border-sky-100 text-xs">
+                            <strong>るるぶ達人の技：</strong> ウブド王宮のガムラン鑑賞は、非常に人気のイベントです。良い席を確保するためには、19:00前には王宮に到着して並んでおくのがベストです。会場は蚊が多いため、長ズボンの着用と虫除けスプレーの重ね塗りが必須となります。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-indigo-600"><span class="mr-2">Day 5</span> 8/3 (月) ウブド最終体験 ➔ 極上スパから深夜移動</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-indigo-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>10:00：ホテルをチェックアウト。ウブド中心部にてチャナン（美しいお供え物）作り体験</li>
+                            <li>13:00：ウブド市場やモンキーフォレスト通りでお土産調達、ゆっくりカフェランチ</li>
+                            <li>16:30：チャーター車でお迎え、ウブドから南部（空港・ジンバランエリア）へ移動</li>
+                            <li>17:30：Warung Bambooにて、バリ最後の上質なシーフードディナー（早めに済ませる）</li>
+                            <li>19:00：予約済み「オーキッドスパ」にて150分のフルマッサージ（〜21:30）</li>
+                            <li>21:45：ングラ・ライ空港へ移動、プライオリティ・パス（1回目）でラウンジ（シャワー利用）</li>
+                            <li>翌00:55：バリ島ングラ・ライ空港出発（深夜便でマニラへ、機内泊）</li>
+                        </ul>
+                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs">
+                            <strong>るるぶ達人の技：</strong> 19:00のオーキッドスパ予約に間に合うよう、夕食は17:30〜の早め設定がポイント。150分の施術が終わる21:30からそのまま空港ラウンジへ直行し、シャワーで仕上げて搭乗という黄金の流れ。完全にリフレッシュした状態で深夜便に乗れるので、機内での睡眠の質が飛躍的に上がります。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-purple-600"><span class="mr-2">Day 6</span> 8/4 (火) 歴史都市マニラとB級グルメ ➔ マニラ泊</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-purple-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>05:00：マニラ・ニノイ・アキノ空港到着</li>
+                            <li>06:00：タクシーで移動、早朝から活気あるローカル朝食（牛肉の甘辛煮ご飯 Tapsilog）を体験</li>
+                            <li>09:00：スペイン統治時代の城塞都市「イントラムロス」散策（暑くなる午前中のうちに歩く！）</li>
+                            <li>12:00：マニラ大聖堂近くのレストランでフィリピン風スペインランチ</li>
+                            <li>13:30：アチーバーズ エアポート ホテルへ移動、チェックイン</li>
+                            <li>14:00 - 18:00：涼しいホテルの部屋で、疲れをとるための全力仮眠タイム</li>
+                            <li>19:00：ホテル近郊またはモール内食堂でフィリピン最強のローカル飯「豚シシグ」の夕食</li>
+                        </ul>
+                        <div class="bg-purple-50 p-3 rounded-lg border border-purple-100 text-xs">
+                            <strong>るるぶ達人の技：</strong> マニラの日中の屋外は立っているだけで体力が消耗するほどの酷暑です。そのため、午前中の比較的涼しい時間にイントラムロス散策をすべて終わらせ、12:00以降は冷房の効いたインドアでの過ごし方に徹するのが、バテないための絶対法則です。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group border border-slate-200 rounded-xl bg-slate-50">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-slate-600"><span class="mr-2">Day 7</span> 8/5 (水) 朝食ラウンジ ➔ 福岡帰国</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3">
+                        <ul class="list-disc list-inside space-y-1.5 font-medium">
+                            <li>07:30：マニラ空港ターミナルに到着、速やかにチェックインを完了</li>
+                            <li>08:00：プライオリティ・パス（2回目）で、マニラ空港の上質ラウンジへ入場</li>
+                            <li>08:30：温かいローカルお粥（Arroz Caldo）やフレッシュジュースで完璧な朝食</li>
+                            <li>09:50：マニラ・ニノイ・アキノ空港出発（帰国フライト）</li>
+                            <li>14:30：福岡空港に到着、最高のバリ・マニラ旅無事帰着！</li>
+                        </ul>
+                        <div class="bg-slate-100 p-3 rounded-lg border border-slate-200 text-xs">
+                            <strong>るるぶ達人の技：</strong> マニラのニノイ・アキノ空港のチェックインや出国ゲート、セキュリティは常に混雑していることで有名です。出発2時間半前（07:20頃）には必ず空港へ到着し、手続きを早々にクリアして、残りの時間をラウンジ内の静かな空間で過ごしましょう。
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="charts" class="grid grid-cols-1 md:grid-cols-2 gap-8 scroll-mt-20">
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-bold text-slate-800 mb-2 text-center">旅のアクティビティ割合分析</h3>
+                <p class="text-xs text-slate-500 mb-4 text-center">伝統文化と極上リラックスが最適な割合でバランスをとっています。</p>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-bold text-slate-800 mb-2 text-center">日別アクティビティ密度（忙しさ指標）</h3>
+                <p class="text-xs text-slate-500 mb-4 text-center">8/1に大移動と沐浴をこなし、後半は余白を活かしたリラックス中心に移行します。</p>
+                <div class="chart-container">
+                    <canvas id="paceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="gourmet-info" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#127857;</span> バリ島＆マニラ 絶品グルメ・ハンティング
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">
+                カードをタップして、各名店の「絶対にハズさない注文のコツ」や、リアルな料金目安をチェックしてください。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <details class="group border border-amber-100 rounded-xl bg-amber-50/30">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span>Lucky Fish Lounge（7/31ディナー）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-amber-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-amber-100 text-sm text-slate-700 bg-white rounded-b-xl space-y-2">
+                        <p class="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded inline-block">隠れ家ビンギン・ビーチBBQ</p>
+                        <p><strong>おすすめ:</strong> レッドスナッパー1匹（約600g）、エビ（中サイズ）、イカ串焼き</p>
+                        <p><strong>料金目安:</strong> 1人あたり 約180,000〜250,000ルピア（約1,800〜2,500円）</p>
+                        <p class="text-xs leading-relaxed bg-amber-50 p-2 rounded">
+                            <strong>るるぶアドバイス：</strong> 目の前で新鮮な魚を選び、重さで買い取るスタイル。白身魚の「レッドスナッパー（マダイの仲間）」は癖がなく、炭火の香ばしさと特製のバリ風調味料（サンバル）に最高にマッチします。ライスと野菜炒めは無料セットになっていることが多いので要確認！
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border border-sky-100 rounded-xl bg-sky-50/30">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span>Warung Bamboo（8/3ディナー）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-sky-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-sky-100 text-sm text-slate-700 bg-white rounded-b-xl space-y-2">
+                        <p class="text-xs font-bold text-sky-700 bg-sky-100 px-2 py-1 rounded inline-block">上質なビーチサイド海鮮BBQ</p>
+                        <p><strong>おすすめ:</strong> シーフード・プラッター（ロブスターやカニ入りの豪華盛り合わせ）</p>
+                        <p><strong>料金目安:</strong> 1人あたり 約250,000〜450,000ルピア（約2,500〜4,500円）</p>
+                        <p class="text-xs leading-relaxed bg-sky-50 p-2 rounded">
+                            <strong>るるぶアドバイス：</strong> ジンバランエリアにあり、観光客向けに美しく整備されたワルン。初日のワイルドなビンギンでのBBQとの違いを比べるのも一興です。少し早い17:30頃に夕日を見ながら始めるのが一番美しくロマンチックです。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border border-emerald-100 rounded-xl bg-emerald-50/30">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span>Nasi Ayam Ibu Oki（8/1ランチ）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-emerald-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-emerald-100 text-sm text-slate-700 bg-white rounded-b-xl space-y-2">
+                        <p class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-1 rounded inline-block">デンパサール市民の絶品鶏飯</p>
+                        <p><strong>おすすめ:</strong> ナシアヤム・チャンプル（スパイシーな鶏肉の盛り合わせプレート）</p>
+                        <p><strong>料金目安:</strong> 1人あたり 約35,000〜60,000ルピア（約350〜600円）</p>
+                        <p class="text-xs leading-relaxed bg-emerald-50 p-2 rounded">
+                            <strong>るるぶアドバイス：</strong> バリ島を代表する鶏ご飯の超有名ローカル店。観光客向けにマイルドにアレンジされていないため、少し辛口です。「辛さを抑えて！」と伝えたい時は、インドネシア語のフレーズを店員に笑顔で見せてください。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border border-purple-100 rounded-xl bg-purple-50/30">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span>マニラ名物：豚シシグ（8/4ディナー）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-purple-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-purple-100 text-sm text-slate-700 bg-white rounded-b-xl space-y-2">
+                        <p class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-1 rounded inline-block">フィリピン最強のローカル鉄板焼き</p>
+                        <p><strong>おすすめ:</strong> 鉄板ポーク・シシグ ＆ ガーリックライス ＆ サンミゲルビール</p>
+                        <p><strong>料金目安:</strong> 1人あたり 約300〜500ペソ（約800〜1,400円）</p>
+                        <p class="text-xs leading-relaxed bg-purple-50 p-2 rounded">
+                            <strong>るるぶアドバイス：</strong> 豚の顔の肉やレバーを細かく刻んでニンニクやスパイスで焼き、熱々の鉄板で出すローカルの王道メニュー。ライムの仲間「カラマンシー」をキュッと絞り、スプーンで豪快にかき混ぜて食べるのがフィリピン流です！
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="practical-guides" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-rose-600 mb-6 flex items-center border-b-2 border-rose-200 pb-2">
+                <span class="mr-2 text-3xl">&#128711;</span> トラブル回避！お腹の防衛 ＆ ボッタクリ対策マニュアル
+            </h2>
+
+            <div class="space-y-4">
+                <details class="group border border-rose-200 rounded-xl bg-rose-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-rose-800"><span class="mr-2">&#128138;</span> 1. お腹と胃腸を徹底的に守る3大鉄則（完全版）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-rose-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-rose-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3 leading-relaxed">
+                        <p>
+                            <strong>鉄則①「ハエ」と「加熱状態」を見極める：</strong> 
+                            バリの「ワルン」やマニラの「ツロツロ」は作り置きが基本です。ハエが大量にたかっている店は避け、常に満席で料理が猛スピードで回転している「地元に愛される人気店」で食べるのが絶対的な安全策です。
+                        </p>
+                        <p>
+                            <strong>鉄則②「水・氷」は完全な既製品のみにする：</strong> 
+                            無料の水やお茶は絶対に飲まないでください。冷たいソフトドリンクを頼む際は、「氷入りのグラス」を断り、缶やペットボトルのままストローで直接飲むのが、お腹を壊さないための極意です。
+                        </p>
+                        <p>
+                            <strong>鉄則③ 手洗い前の除菌シート徹底：</strong> 
+                            ローカル食堂のフィンガーボール（手洗い用の水の器）は、水自体が汚れている場合があります。自分のアルコール除菌シートでしっかり手を拭いてから、箸やスプーンを使用しましょう。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border border-amber-200 rounded-xl bg-amber-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-amber-800"><span class="mr-2">&#12198;</span> 2. ボッタクられないための対面交渉術（100円基準ルール）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-amber-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-amber-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3 leading-relaxed">
+                        <p>
+                            <strong>大原則「お釣りの余地を消す」：</strong> 
+                            市場（バドゥン市場など）の商人は、大きなお札を出すと「お釣りが足りない」と言ってごまかすことがあります。市場に行く前に、必ずコンビニ等で大きなお札を崩し、10,000 Rp札や20,000 Rp札（フィリピンなら20ペソ・50ペソ札）を別ポケットに大量に用意しておきましょう。決まった金額を「ぴったり出す」だけでトラブルを100%防止できます。
+                        </p>
+                        <p>
+                            <strong>「10k Rp / 50 PHP」ルール：</strong> 
+                            お土産を値切る際、想定相場との差額が「10k Rp（約95円）／50 PHP（約135円）」未満であれば、交渉に時間をかけず即決。これ以上高ければ、スマホの電卓に金額を打ち込んで「My Limit!（私の限界）」と笑顔で提示し、ダメなら歩き去る（立ち去るフリ）が最も効果的です。
+                        </p>
+                        <p>
+                            <strong>「おまけ」交渉テクニック：</strong> 
+                            現金の値引き交渉が「100円の差」で折り合わない場合、その値段を受け入れる代わりに、店頭の小さなキーホルダーやお土産用の小物を指差し「これをおまけしてくれたら買うよ」と交渉します。店側もおまけには非常に寛容なため、高い確率で合意できます。
+                        </p>
+                    </div>
+                </details>
+
+                <details class="group border border-emerald-200 rounded-xl bg-emerald-50/20">
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center text-emerald-800"><span class="mr-2">&#128137;</span> 3. 狂犬病や感染症、サルの襲撃対策</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-emerald-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-emerald-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-3 leading-relaxed">
+                        <p>
+                            <strong>狂犬病への絶対的な注意：</strong> 
+                            バリ島やマニラには可愛い野良犬や野良猫がたくさんいますが、絶対に触らないでください。万が一噛まれたり引っ掻かれたりした場合は、狂犬病の恐れがあるため、すぐに流水で傷口を徹底的に洗い、速やかに大病院に駆け込んで狂犬病ワクチン（暴露後接種）を受ける必要があります。
+                        </p>
+                        <p>
+                            <strong>ウルワツ寺院のサルの撃退法：</strong> 
+                            ウルワツのサルはひったくりのプロです。帽子、メガネ、サングラス、スマートフォンは車内に置いていくか、バッグの中に完全に隠してください。もしサルがバッグに乗ってきたら、引っ張り合わず、現地の寺院スタッフ（サルの餌を持っている）を呼ぶのが一番安全です。
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="phrases" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#128483;</span> 現場で即役立つ！最低限の現地語フレーズ
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <details class="group border border-amber-200 rounded-xl bg-amber-50/20" open>
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center">🇮🇩 バリ島（インドネシア語）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-amber-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-amber-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-2.5">
+                        <p class="bg-amber-50/30 p-2 rounded"><strong>「これをお願いします（指差し）」</strong><br><span class="text-amber-800 font-bold">"Tolong ini."</span> （トロン・イニ）</p>
+                        <p class="bg-amber-50/30 p-2 rounded"><strong>「辛くしないで！（胃腸の防衛に必須）」</strong><br><span class="text-amber-800 font-bold">"Jangan pedas."</span> （ジャンガン・プダス）</p>
+                        <p class="bg-amber-50/30 p-2 rounded"><strong>「ソースは別皿にしてください」</strong><br><span class="text-amber-800 font-bold">"Sambal dipisah."</span> （サンバル・ディピサ）</p>
+                        <p class="bg-amber-50/30 p-2 rounded"><strong>「安くできますか？（市場での値切り）」</strong><br><span class="text-amber-800 font-bold">"Bisa kurang?"</span> （ビサ・クラン？）</p>
+                        <p class="bg-amber-50/30 p-2 rounded"><strong>「（バリ固有の感謝の言葉）ありがとう！」</strong><br><span class="text-amber-800 font-bold">"Matur Suksma."</span> （マトゥール・スックスマ）</p>
+                    </div>
+                </details>
+
+                <details class="group border border-sky-200 rounded-xl bg-sky-50/20" open>
+                    <summary class="flex justify-between items-center p-4 font-bold text-slate-800 cursor-pointer select-none">
+                        <span class="flex items-center">🇵🇭 マニラ（タガログ語）</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-sky-500 font-bold">&#9662;</span>
+                    </summary>
+                    <div class="p-4 border-t border-sky-200 text-sm text-slate-700 bg-white rounded-b-xl space-y-2.5">
+                        <p class="bg-sky-50/30 p-2 rounded"><strong>「これをお願いします（指差し）」</strong><br><span class="text-sky-800 font-bold">"Ito po."</span> （イト・ポ）</p>
+                        <p class="bg-sky-50/30 p-2 rounded"><strong>「ご飯を1杯ください（おかずに最高）」</strong><br><span class="text-sky-800 font-bold">"Isang kanin po."</span> （イサン・カニン・ポ）</p>
+                        <p class="bg-sky-50/30 p-2 rounded"><strong>「これ、いくらですか？」</strong><br><span class="text-sky-800 font-bold">"Magkano ito?"</span> （マグカノ・イト？）</p>
+                        <p class="bg-sky-50/30 p-2 rounded"><strong>「これ、辛いですか？」</strong><br><span class="text-sky-800 font-bold">"Maanghang ba ito?"</span> （マアンハン・バ・イト？）</p>
+                        <p class="bg-sky-50/30 p-2 rounded"><strong>「ありがとうございます」</strong><br><span class="text-sky-800 font-bold">"Salamat po."</span> （サラマット・ポ）</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="relax-spa" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#128134;</span> 癒やし特化型：極上マッサージスパ ＆ 周辺ガイド
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">
+                ウブドとヌサドゥアを代表する超実力派スパ。大自然に囲まれた空間や、男性熟練セラピストによる力強い指圧で、日常の疲れを完全に吹き飛ばします。
+            </p>
+
+            <div class="space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border-b border-amber-100 gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-amber-100 text-amber-700 font-bold text-xs px-2.5 py-1 rounded-full">8/3 深夜フライト直前の極限デトックス</span>
+                        <h3 class="text-lg font-bold text-slate-800">Jari Menari (ジャリ・メナリヌサドゥア本店)</h3>
+                        <p class="text-sm text-slate-500">
+                            セラピストは徹底教育された男性のみ。バリ伝統の強い指圧、ロミロミ、ヨガストレッチを融合した流れるような施術が特徴で、世界中のセラピストが技術を学びにくる業界最高峰のクオリティです。
+                        </p>
+                    </div>
+                    <div class="text-left md:text-right min-w-[180px]">
+                        <p class="text-sm font-bold text-slate-700">90分コース: 約7,000〜9,000円</p>
+                        <a href="https://www.jarimenari.com/" target="_blank" class="inline-block mt-2 bg-amber-400 hover:bg-amber-500 text-white font-bold text-xs px-4 py-2 rounded-full shadow-md transition">公式サイト（英語）で予約</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border-b border-sky-100 gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-full">8/3の夕食会場「Warung Bamboo」から至近</span>
+                        <h3 class="text-lg font-bold text-slate-800">The Shampoo Lounge (ジンバラン店)</h3>
+                        <p class="text-sm text-slate-500">
+                            シーフードを堪能した後、空港へ向かう途中に寄りやすいベストポジションにあるオシャレなサロン。マッサージの他、バリ島名物の頭皮スパ「クリームバス」も非常に評価が高く、深夜フライト前の洗髪・ブローに最適です。
+                        </p>
+                    </div>
+                    <div class="text-left md:text-right min-w-[180px]">
+                        <p class="text-sm font-bold text-slate-700">90分コース: 約5,000〜8,000円</p>
+                        <a href="https://shampoolounge.com/" target="_blank" class="inline-block mt-2 bg-sky-400 hover:bg-sky-500 text-white font-bold text-xs px-4 py-2 rounded-full shadow-md transition">公式サイト（英語）で予約</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-emerald-100 text-emerald-700 font-bold text-xs px-2.5 py-1 rounded-full">8/1 夕方の沐浴（セバトゥ）からウブドへ向かう動線</span>
+                        <h3 class="text-lg font-bold text-slate-800">Karsa Spa (カルサ・スパ)</h3>
+                        <p class="text-sm text-slate-500">
+                            ウブドのライステラス（棚田）と美しい蓮の池を望むオープンエアの超有名スパ。レイキ治療のセラピストも多数在籍しており、心身を深い周波数で癒やしてくれます。施術後の美しいフラワーバスはバリ島随一の美しさです。
+                        </p>
+                    </div>
+                    <div class="text-left md:text-right min-w-[180px]">
+                        <p class="text-sm font-bold text-slate-700">90分コース: 約4,500〜6,500円</p>
+                        <a href="https://www.karsaspa.com/" target="_blank" class="inline-block mt-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2 rounded-full shadow-md transition">公式サイト（英語）で予約</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="checklist" class="glass-card p-6 md:p-8 scroll-mt-20">
+            <h2 class="text-2xl font-black text-amber-600 mb-6 flex items-center border-b-2 border-amber-200 pb-2">
+                <span class="mr-2 text-3xl">&#128092;</span> 旅の持ち物＆事前準備チェックリスト
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center"><span class="mr-2">&#128186;</span> 事前予約タスク</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400" checked>
+                            <span class="text-sm text-slate-700 font-bold">【完了】ケマラ リビング サヌール（7/30-8/1）の確保</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400" checked>
+                            <span class="text-sm text-slate-700 font-bold">【完了】空港深夜送迎（7/31 00:40発）の確保</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400" checked>
+                            <span class="text-sm text-slate-700 font-bold">【完了】クブ サリ ウブド ヴィラ（8/1-8/3）の確保</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400" checked>
+                            <span class="text-sm text-slate-700 font-bold">【完了】アチーバーズ エアポート ホテル（8/4-8/5）の確保</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700 text-rose-600 font-bold">【未予約】カーチャーターの手配（7/31、8/1、8/3）</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">ケチャ・ダンスチケット（7/31 18:00）のネット手配</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">Karsa Spa / Jari Menari の事前予約</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center"><span class="mr-2">&#127898;</span> ビンギンビーチ＆沐浴の準備品</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">歩きやすい靴・スニーカー（夜間のビンギン暗い階段用）</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">沐浴用の着替え（濡れても良い衣服や下着）＆ビニール袋</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">吸水性の高いバスタオル・宿から持ち出すドライ用布</span>
+                        </label>
+                        <label class="flex items-start gap-2.5 p-2 hover:bg-amber-50 rounded cursor-pointer">
+                            <input type="checkbox" class="mt-1 w-4.5 h-4.5 text-amber-500 border-amber-300 rounded focus:ring-amber-400">
+                            <span class="text-sm text-slate-700">虫除けスプレー・日焼け止め（現地調達も可能）</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-5xl mx-auto border-t border-amber-200 mt-16 pt-8 pb-12 text-center text-slate-400 text-sm">
+        <p class="font-bold text-amber-600 mb-2">Have a Nice Trip in Bali & Manila!</p>
+        <p>このしおりをスマートフォンに保存するか、スクリーンショットを撮ってご活用ください。</p>
+    </footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const lockScreen = document.getElementById('lock-screen');
+    const mainContent = document.getElementById('main-content');
+    if (sessionStorage.getItem('itinerary_unlocked') === 'true') {
+        lockScreen.style.display = 'none';
+        mainContent.classList.remove('hidden');
+    }
+});
+
+let enteredPin = "";
+function pressKey(num) {
+    if (enteredPin.length < 4) {
+        enteredPin += num;
+        updateDots();
+    }
+    if (enteredPin.length === 4) {
+        checkPin();
+    }
+}
+function clearPin() {
+    enteredPin = "";
+    updateDots();
+}
+function updateDots() {
+    const dots = document.querySelectorAll('.pin-dot');
+    dots.forEach((dot, idx) => {
+        if (idx < enteredPin.length) {
+            dot.classList.add('bg-amber-500');
+            dot.classList.remove('bg-slate-700');
+        } else {
+            dot.classList.remove('bg-amber-500');
+            dot.classList.add('bg-slate-700');
+        }
+    });
+}
+function checkPin() {
+    if (enteredPin === "1009") {
+        sessionStorage.setItem('itinerary_unlocked', 'true');
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('main-content').classList.remove('hidden');
+    } else {
+        document.getElementById('error-msg').innerText = "暗証番号が違います。もう一度入力してください。";
+        enteredPin = "";
+        setTimeout(() => {
+            document.getElementById('error-msg').innerText = "";
+            updateDots();
+        }, 1500);
+    }
+}
+
+function processLabel(text) {
+    if (text.length <= 16) return text;
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (currentLine.length + 1 + words[i].length <= 16) {
+            currentLine += ' ' + words[i];
+        } else {
+            lines.push(currentLine);
+            currentLine = words[i];
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+}
+
+const customTooltipPlugin = {
+    callbacks: {
+        title: function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        }
+    }
+};
+
+const donutLabelsRaw = [
+    "伝統文化・寺院・芸術鑑賞",
+    "スパ・マッサージ・ラウンジ",
+    "地元グルメ・海鮮シーフード",
+    "移動・空港・国際線トランジット"
+];
+const donutLabels = donutLabelsRaw.map(processLabel);
+
+const ctxActivity = document.getElementById('activityChart').getContext('2d');
+new Chart(ctxActivity, {
+    type: 'doughnut',
+    data: {
+        labels: donutLabels,
+        datasets: [{
+            data: [35, 25, 20, 20],
+            backgroundColor: [
+                '#f59e0b', 
+                '#ec4899', 
+                '#0ea5e9', 
+                '#94a3b8'  
+            ],
+            borderWidth: 0,
+            hoverOffset: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 12,
+                    font: {
+                        family: "'Hiragino Kaku Gothic ProN', Meiryo, sans-serif",
+                        size: 11
+                    },
+                    color: '#475569'
+                }
+            },
+            tooltip: customTooltipPlugin
+        }
+    }
+});
+
+const barLabelsRaw = [
+    "7/30: バリ移動",
+    "7/31: ケチャ＆海",
+    "8/1: 沐浴・街散策",
+    "8/2: 王宮鑑賞",
+    "8/3: スパ・空港へ",
+    "8/4: マニラ歴史",
+    "8/5: 帰国フライト"
+];
+const barLabels = barLabelsRaw.map(processLabel);
+
+const ctxPace = document.getElementById('paceChart').getContext('2d');
+new Chart(ctxPace, {
+    type: 'bar',
+    data: {
+        labels: barLabels,
+        datasets: [{
+            label: 'アクティビティ密度（最高6ポイント）',
+            data: [2, 5, 6, 4, 5, 4, 2],
+            backgroundColor: '#0ea5e9',
+            borderRadius: 8,
+            barThickness: 'flex',
+            maxBarThickness: 32
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 7,
+                grid: {
+                    color: '#fef3c7',
+                    drawBorder: false
+                },
+                ticks: {
+                    stepSize: 1,
+                    color: '#64748b'
+                }
+            },
+            x: {
+                grid: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    color: '#64748b',
+                    font: {
+                        family: "'Hiragino Kaku Gothic ProN', Meiryo, sans-serif",
+                        size: 10
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: customTooltipPlugin
+        }
+    }
+});
+</script>
+</body>
+</html>
